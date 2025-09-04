@@ -16,4 +16,5 @@ describe PaymentProcessor do
     expect(payment).to have_received(:charge).with(10233, 'ayoo')
     expect(logger).to have_received(:info).with('Charged 10233 to ayoo')
   end
+
 end
