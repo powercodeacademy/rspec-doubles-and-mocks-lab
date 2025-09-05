@@ -24,4 +24,16 @@ describe PaymentProcessor do
       expect(result).to eq(:refunded) 
     end
   end
+
+
+  describe 'using a PaymentProcessor double' do 
+    let(:processor_double) { double('PaymentProcessor') }
+
+    it 'can be stubbed like any dependency' do 
+      allow(processor_double).to receive(:process).and_return(:fake_result)
+
+      expect(processor_double.process(123, 'acct')).to eq(:fake_result)
+      expect(processor_double).to have_received(:process).with(123, 'acct') 
+    end
+  end
 end
